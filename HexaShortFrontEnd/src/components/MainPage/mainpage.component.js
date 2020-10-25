@@ -32,7 +32,7 @@ export default function Mainpage() {
       .then((res) => {
         console.log(res);
         seturlCode(res.data.urlCode);
-        setShortUrl("https://hexashort-url.web.app/" + res.data.urlCode);
+        setShortUrl("hexashort.tk/" + res.data.urlCode);
       })
       .catch(() => {
         setShortUrl("Please Try Again......");
@@ -53,6 +53,11 @@ export default function Mainpage() {
                 Free URL shortener to create the perfect short URLs for your
                 business. HexaShort helps you shorten, create and share branded
                 links with custom domains at scale.
+              </p>
+              <p>
+                <span style={{ fontSize: "10px" }}>
+                  By Senura Vihan Jayadeva
+                </span>
               </p>
             </div>
           </center>
