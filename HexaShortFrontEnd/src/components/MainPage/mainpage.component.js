@@ -32,7 +32,7 @@ export default function Mainpage() {
       .then((res) => {
         console.log(res);
         seturlCode(res.data.urlCode);
-        setShortUrl("http://localhost:3000/" + res.data.urlCode);
+        setShortUrl("https://hexashort-url.web.app/" + res.data.urlCode);
       })
       .catch(() => {
         setShortUrl("Please Try Again......");
@@ -102,7 +102,7 @@ export default function Mainpage() {
             {shortUrl}
           </p>
 
-          <div>
+          <div style={{ marginBottom: "10px" }}>
             {!shortUrl ? (
               " "
             ) : (
