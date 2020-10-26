@@ -18,6 +18,7 @@ app.use(express.json());
 //define routes
 app.use("/", require("./routes/index"));
 app.use("/api/url", require("./routes/url"));
+app.use("/api/auth", require("./routes/auth"));
 
 app.listen(port, () => {
   console.log("server started on " + port);

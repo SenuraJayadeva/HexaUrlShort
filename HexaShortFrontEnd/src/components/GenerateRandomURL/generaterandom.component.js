@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import copy from "copy-to-clipboard";
-import { GoogleLogin } from "react-google-login";
 
 import Logo from "./img/logo.jpg";
 
-export default function Mainpage() {
+export default function GenerateRandomUrl() {
   const [longUrl, setlongUrl] = useState();
   const [urlCode, seturlCode] = useState();
   const [shortUrl, setShortUrl] = useState();
@@ -40,36 +39,8 @@ export default function Mainpage() {
       });
   }
 
-  const responseSuccessGoogle = (response) => {
-    console.log(response);
-    axios({
-      method: "POST",
-      url: process.env.REACT_APP_BACKEND_URL + "/api/auth/googlelogin",
-      data: { tokenId: response.tokenId },
-    }).then((res) => {
-      alert("Login Success");
-      localStorage.setItem("x-auth-token", res.data.token);
-      window.location = "/me";
-    });
-  };
-
-  const responseFailureGoogle = (response) => {
-    console.log(response);
-  };
-
   return (
     <div>
-      <nav class="navbar navbar-light bg-dark justify-content-between">
-        <a class="navbar-brand">Navbar</a>
-
-        <GoogleLogin
-          clientId="832304410996-o3j7n3jf6jjj83ajhgsigj4p64ri3ifq.apps.googleusercontent.com"
-          buttonText="Login With Google"
-          onSuccess={responseSuccessGoogle}
-          onFailure={responseFailureGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-      </nav>
       <div className="container">
         <div className="row">
           <center>
