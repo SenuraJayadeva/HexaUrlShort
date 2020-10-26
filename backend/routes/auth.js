@@ -79,17 +79,21 @@ router.post("/googlelogin", (req, res) => {
                   });
                 }
 
-                const token = jwt.sign(
-                  { email: data.email },
+                const payload = {
+                  user: {
+                    email: data.email,
+                  },
+                };
+
+                jwt.sign(
+                  payload,
                   config.get("jwtSecret"),
-                  {
-                    expiresIn: 360000,
+                  { expiresIn: 360000 },
+                  (err, token) => {
+                    if (err) throw err;
+                    res.json({ token });
                   }
                 );
-
-                res.json({
-                  token,
-                });
               });
             }
           }

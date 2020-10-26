@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import copy from "copy-to-clipboard";
 
-import Logo from "./img/logo.jpg";
-
 export default function GenerateCustomUrl() {
   const [longUrl, setlongUrl] = useState();
   const [urlCode, seturlCode] = useState();
@@ -41,28 +39,6 @@ export default function GenerateCustomUrl() {
 
   return (
     <div>
-      <div className="container">
-        <div className="row">
-          <center>
-            <div className="col-md-6">
-              <img src={Logo} style={{ width: "250px" }} alt="logo" />
-            </div>
-            <div className="col-md-6 text-center">
-              <h1>HexaShort | Custom Url</h1>
-              <p>
-                Free URL shortener to create the perfect short URLs for your
-                business. HexaShort helps you shorten, create and share branded
-                links with custom domains at scale.
-              </p>
-              <p>
-                <span style={{ fontSize: "10px" }}>
-                  By Senura Vihan Jayadeva
-                </span>
-              </p>
-            </div>
-          </center>
-        </div>
-      </div>
       <div className="container">
         <center>
           <div style={{ margin: "auto" }}>
