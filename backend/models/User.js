@@ -12,5 +12,8 @@ const UserSchema = new Schema({
   password: {
     type: String,
   },
+  picture: {
+    type: String,
+  },
 });
 module.exports = User = mongoose.model("user", UserSchema);

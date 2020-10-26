@@ -16,7 +16,9 @@ router.get("/", auth, async (req, res) => {
   try {
     //get user details
     //-password : dont return the pasword
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findOne({
+      email: req.user.email,
+    }).select("-password");
     res.json(user);
   } catch {
     console.log(err.message);
@@ -38,7 +40,7 @@ router.post("/googlelogin", (req, res) => {
         "832304410996-o3j7n3jf6jjj83ajhgsigj4p64ri3ifq.apps.googleusercontent.com",
     })
     .then((response) => {
-      const { email_verified, name, email } = response.payload;
+      const { email_verified, name, email, picture } = response.payload;
 
       console.log(response.payload);
 
@@ -50,8 +52,14 @@ router.post("/googlelogin", (req, res) => {
             });
           } else {
             if (user) {
+              const payload = {
+                user: {
+                  email: user.email,
+                },
+              };
+
               jwt.sign(
-                { id: user._id },
+                payload,
                 config.get("jwtSecret"),
                 { expiresIn: 360000 },
                 (err, token) => {
@@ -62,7 +70,7 @@ router.post("/googlelogin", (req, res) => {
             } else {
               let password = email + config.get("jwtSecret");
 
-              let newUser = new User({ name, email, password });
+              let newUser = new User({ name, email, password, picture });
 
               newUser.save((err, data) => {
                 if (err) {
@@ -72,7 +80,7 @@ router.post("/googlelogin", (req, res) => {
                 }
 
                 const token = jwt.sign(
-                  { id: data._id },
+                  { email: data.email },
                   config.get("jwtSecret"),
                   {
                     expiresIn: 360000,
