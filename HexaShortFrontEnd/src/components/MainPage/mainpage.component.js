@@ -58,33 +58,60 @@ export default function Mainpage() {
   return (
     <Router>
       <div>
-        <nav class="navbar navbar-light bg-light justify-content-between">
-          <a class="navbar-brand">HexaShort</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">
+            <img src={Logo} style={{ width: "50px" }} alt="logo" />
+            <span style={{ fontWeight: "bold", color: "#ba4949" }}>
+              HexaShort
+            </span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-          {userName !== null ? (
-            <>
-              <a>
-                <img
-                  src={picture}
-                  style={{ width: "30px", height: "30px", borderRadius: "50%" }}
-                />
-                {"  "}
-                {userName}
-                {"  "}
-                <button className="btn btn-outline-danger" onClick={userLogout}>
-                  Logout
-                </button>
-              </a>
-            </>
-          ) : (
-            <GoogleLogin
-              clientId="832304410996-o3j7n3jf6jjj83ajhgsigj4p64ri3ifq.apps.googleusercontent.com"
-              buttonText="Login With Google"
-              onSuccess={responseSuccessGoogle}
-              onFailure={responseFailureGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-          )}
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+
+            {userName !== null ? (
+              <>
+                <a>
+                  <img
+                    src={picture}
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                  {"  "}
+                  {userName}
+                  {"  "}
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={userLogout}
+                  >
+                    Logout
+                  </button>
+                </a>
+              </>
+            ) : (
+              <GoogleLogin
+                clientId="832304410996-o3j7n3jf6jjj83ajhgsigj4p64ri3ifq.apps.googleusercontent.com"
+                buttonText="Login With Google"
+                onSuccess={responseSuccessGoogle}
+                onFailure={responseFailureGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+            )}
+          </div>
         </nav>
 
         <div>
@@ -96,10 +123,14 @@ export default function Mainpage() {
                 </div>
                 <div className="col-md-6 text-center">
                   <h1>HexaShort</h1>
+
                   <p>
                     Free URL shortener to create the perfect short URLs for your
                     business. HexaShort helps you shorten, create and share
                     branded links with custom domains at scale.
+                  </p>
+                  <p style={{ fontWeight: "bold" }}>
+                    Create an account for customized urls
                   </p>
                   <p>
                     <span style={{ fontSize: "10px" }}>
