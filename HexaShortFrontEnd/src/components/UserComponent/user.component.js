@@ -43,7 +43,7 @@ export default function UserComponent() {
     <Router>
       <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">
+          <a class="navbar-brand" href="/me">
             <img src={Logo} style={{ width: "50px" }} alt="logo" />
             <span style={{ fontWeight: "bold", color: "#ba4949" }}>
               HexaShort
