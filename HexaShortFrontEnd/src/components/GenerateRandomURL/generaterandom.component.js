@@ -49,7 +49,7 @@ export default function GenerateRandomUrl() {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Enter Url"
+                  placeholder="Enter Long Url"
                   onChange={(e) => {
                     setlongUrl(e.target.value);
                   }}

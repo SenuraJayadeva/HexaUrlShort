@@ -68,7 +68,7 @@ export default function GenerateCustomUrl() {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Enter Url"
+                  placeholder="Enter Long Url"
                   onChange={(e) => {
                     setlongUrl(e.target.value);
                   }}
