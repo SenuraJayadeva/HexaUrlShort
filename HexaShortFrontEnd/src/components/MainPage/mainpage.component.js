@@ -7,8 +7,6 @@ import { GoogleLogin } from "react-google-login";
 import Logo from "./img/logo.jpg";
 //import components
 import GenerateRandomUrl from "../GenerateRandomURL/generaterandom.component";
-import Redirect from "../RedirectComponent/redirect.component";
-import GenerateCustomUrl from "../GenerateCustomUrl/generatecustom.component";
 
 export default function Mainpage() {
   const [userName, setuserName] = useState(null);
@@ -113,8 +111,6 @@ export default function Mainpage() {
             </div>
           </div>
           <GenerateRandomUrl />
-          {/* <Route path="/me" exact component={GenerateCustomUrl} /> */}
-          <Route path="/:id" exact component={Redirect} />
         </div>
       </div>
     </Router>

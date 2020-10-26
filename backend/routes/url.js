@@ -6,8 +6,20 @@ const config = require("config");
 
 const Url = require("../models/Url");
 
+//@route POST /api/url
+//@desc get all short url
+router.get("/", async (req, res) => {
+  Url.find()
+    .then((urls) => {
+      res.json(urls);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 //@route POST /api/url/shorten
-//@desc Create short url
+//@desc Create short url ramdom
 router.post("/shorten", async (req, res) => {
   const { longUrl } = req.body;
 
@@ -35,6 +47,37 @@ router.post("/shorten", async (req, res) => {
           res.json(url);
         });
       }
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    res.status(401).json("Invalid long url");
+  }
+});
+
+//@route POST /api/url/shortencustom
+//@desc Create short url customized
+router.post("/shortencustom", async (req, res) => {
+  const { longUrl, customCode } = req.body;
+
+  //Create an url code
+  const urlCode = customCode;
+
+  //check the long url
+  if (validUrl.isUri(longUrl)) {
+    try {
+      const shortUrl = urlCode;
+
+      url = new Url({
+        longUrl,
+        shortUrl,
+        urlCode,
+        date: new Date(),
+      });
+
+      await url.save().then(() => {
+        res.json(url);
+      });
     } catch (error) {
       console.log(error);
     }

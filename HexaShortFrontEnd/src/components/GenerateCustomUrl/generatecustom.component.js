@@ -3,12 +3,22 @@ import axios from "axios";
 import copy from "copy-to-clipboard";
 
 export default function GenerateCustomUrl() {
+  const [urls, seturls] = useState([]);
   const [longUrl, setlongUrl] = useState();
   const [urlCode, seturlCode] = useState();
   const [shortUrl, setShortUrl] = useState();
+  const [customCode, setcustomCode] = useState();
+  const [urlalert, seturlalert] = useState(null);
 
   //COPY TEXT
   const [copySuccess, setCopySuccess] = useState("");
+
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/api/url").then((res) => {
+      console.log("url codes " + res.data);
+      seturls(res.data);
+    });
+  }, []);
 
   function copyToClipboard(e) {
     copy(shortUrl);
@@ -21,12 +31,23 @@ export default function GenerateCustomUrl() {
 
     e.preventDefault();
 
+    urls.map((url) => {
+      if (url.urlCode == customCode) {
+        alert("Already Exist..Please use another custom code");
+        return false;
+      }
+    });
+
     const newUrl = {
       longUrl,
+      customCode,
     };
 
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/api/url/shorten", newUrl)
+      .post(
+        process.env.REACT_APP_BACKEND_URL + "/api/url/shortencustom",
+        newUrl
+      )
       .then((res) => {
         console.log(res);
         seturlCode(res.data.urlCode);
@@ -54,6 +75,38 @@ export default function GenerateCustomUrl() {
                   required
                 />
               </div>
+              <div class="form-group col-md-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Custom Code"
+                  onChange={(e) => {
+                    setcustomCode(e.target.value);
+
+                    urls.map((url) => {
+                      if (url.urlCode === e.target.value) {
+                        seturlalert("alert-danger");
+                      } else if (url.urlCode !== e.target.value) {
+                        seturlalert("alert-success");
+                      } else {
+                        seturlalert(null);
+                      }
+                    });
+                  }}
+                  required
+                />
+
+                <br />
+
+                {urlalert === "alert-danger" ? (
+                  <div class="alert alert-danger" role="alert">
+                    Already Exist!
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+
               <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary">
                   GET SHORTEN LINK

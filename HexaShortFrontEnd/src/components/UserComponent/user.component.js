@@ -3,7 +3,6 @@ import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import GenerateRandomUrl from "../GenerateRandomURL/generaterandom.component";
-import Redirect from "../RedirectComponent/redirect.component";
 import GenerateCustomUrl from "../GenerateCustomUrl/generatecustom.component";
 
 import Logo from "./img/logo.jpg";
@@ -43,14 +42,34 @@ export default function UserComponent() {
   return (
     <Router>
       <div>
-        <nav class="navbar navbar-light bg-light justify-content-between">
-          <a class="navbar-brand">HexaShort</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">
+            <img src={Logo} style={{ width: "50px" }} alt="logo" />
+            HexaShort
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-          <>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+
             <a>
               <img
                 src={picture}
-                style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  borderRadius: "50%",
+                }}
               />
               {"  "}
               {userName}
@@ -59,7 +78,7 @@ export default function UserComponent() {
                 Logout
               </button>
             </a>
-          </>
+          </div>
         </nav>
 
         <div>
