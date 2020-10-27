@@ -119,11 +119,12 @@ export default function Mainpage() {
             <div className="row">
               <center>
                 <div className="col-md-6">
-                  <img src={Logo} style={{ width: "250px" }} alt="logo" />
+                  <img
+                    src="https://media.giphy.com/media/ts7KdDPnTEeJuC5r4o/giphy.gif"
+                    style={{ width: "300px" }}
+                  />
                 </div>
                 <div className="col-md-6 text-center">
-                  <h1>HexaShort</h1>
-
                   <p>
                     Free URL shortener to create the perfect short URLs for your
                     business. HexaShort helps you shorten, create and share
