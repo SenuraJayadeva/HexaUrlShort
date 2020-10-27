@@ -31,6 +31,20 @@ export default function GenerateCustomUrl() {
 
     e.preventDefault();
 
+    let letter = customCode.slice();
+
+    //console.log("Size of the input array" + letter.length);
+
+    var i;
+    for (i = 0; i < letter.length; i++) {
+      //console.log("letter" + letter[i]);
+      if (letter[i] == "/") {
+        alert("You cant use forwardslash");
+        setShortUrl("Please Try Again......");
+        return false;
+      }
+    }
+
     urls.map((url) => {
       if (url.urlCode == customCode) {
         alert("Already Exist..Please use another custom code");
@@ -82,6 +96,18 @@ export default function GenerateCustomUrl() {
                   placeholder="Enter Custom Code"
                   onChange={(e) => {
                     setcustomCode(e.target.value);
+
+                    let letter = e.target.value.slice();
+
+                    //console.log("Size of the input array" + letter.length);
+
+                    var i;
+                    for (i = 0; i < letter.length; i++) {
+                      //console.log("letter" + letter[i]);
+                      if (letter[i] == "/") {
+                        alert("You cant use forwardslash");
+                      }
+                    }
 
                     urls.map((url) => {
                       if (url.urlCode === e.target.value) {
